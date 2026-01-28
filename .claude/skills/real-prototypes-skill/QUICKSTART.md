@@ -8,7 +8,7 @@ Get started with Platform Prototype Skill in 5 minutes.
 
 ```bash
 cd ~/.claude/skills
-git clone https://github.com/kaidhar/real-prototypes.git
+git clone https://github.com/kaidhar/real-prototypes-skill.git
 ```
 
 ## 2️⃣ Open Claude Code
@@ -204,7 +204,7 @@ Add error handling
 ### "Skill not found"
 ```bash
 # Make sure it's in the right place
-ls ~/.claude/skills/real-prototypes/SKILL.md
+ls ~/.claude/skills/real-prototypes-skill/SKILL.md
 ```
 
 ### "agent-browser-skill missing"
@@ -237,4 +237,4 @@ Now you can:
 
 ---
 
-Need help? [Open an issue](https://github.com/kaidhar/real-prototypes/issues)
+Need help? [Open an issue](https://github.com/kaidhar/real-prototypes-skill/issues)

@@ -33,7 +33,7 @@ npx tsc --noEmit
 ```
 .claude/
   skills/
-    real-prototypes/
+    real-prototypes-skill/
       SKILL.md              # Main skill definition
       README.md             # Usage documentation
 references/                 # Captured platform assets (generated)

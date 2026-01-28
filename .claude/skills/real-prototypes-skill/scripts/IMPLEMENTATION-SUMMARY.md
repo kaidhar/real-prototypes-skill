@@ -6,7 +6,7 @@ Successfully implemented a **robust page scraping system** with 0% failure targe
 
 ## Implementation Location
 
-**Primary File**: `/mnt/c/Users/dhark/Documents/Personal/Github/real-prototypes/.claude/skills/real-prototypes/scripts/full-site-capture.js`
+**Primary File**: `/mnt/c/Users/dhark/Documents/Personal/Github/real-prototypes-skill/.claude/skills/real-prototypes-skill/scripts/full-site-capture.js`
 
 ## Key Features Implemented
 
@@ -368,7 +368,7 @@ node test-validation.js
 
 ```bash
 cd /path/to/project
-node .claude/skills/real-prototypes/scripts/full-site-capture.js
+node .claude/skills/real-prototypes-skill/scripts/full-site-capture.js
 ```
 
 ### Run Capture

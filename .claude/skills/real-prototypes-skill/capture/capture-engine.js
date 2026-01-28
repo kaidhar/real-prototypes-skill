@@ -17,7 +17,7 @@ const path = require('path');
 
 class CaptureEngine {
   constructor(config) {
-    this.config = config;
+    this.config = this.normalizeConfig(config);
     this.capturedPages = new Map();
     this.discoveredUrls = new Set();
     this.visitedUrls = new Set();
@@ -34,15 +34,172 @@ class CaptureEngine {
     };
   }
 
+  /**
+   * Normalize config to handle both old and new field naming conventions
+   * Supports backwards compatibility while standardizing internally
+   */
+  normalizeConfig(config) {
+    const normalized = JSON.parse(JSON.stringify(config)); // Deep clone
+
+    // Normalize capture section
+    if (normalized.capture) {
+      // Support both 'manualPages' and 'include' (prefer manualPages, fallback to include)
+      if (normalized.capture.manualPages && !normalized.capture.include) {
+        normalized.capture.include = normalized.capture.manualPages;
+      }
+      // Also support the reverse for users who use 'include'
+      if (normalized.capture.include && !normalized.capture.manualPages) {
+        normalized.capture.manualPages = normalized.capture.include;
+      }
+    }
+
+    // Normalize auth credentials section
+    if (normalized.auth?.credentials) {
+      const creds = normalized.auth.credentials;
+
+      // Support both 'emailSelector' and 'emailField'
+      if (creds.emailSelector && !creds.emailField) {
+        // emailSelector is CSS, keep it as selector
+      }
+      if (creds.emailField && !creds.emailSelector) {
+        // emailField might be a label name or a selector
+        // If it looks like a CSS selector, treat it as such
+        if (creds.emailField.startsWith('#') || creds.emailField.startsWith('.') || creds.emailField.includes('[')) {
+          creds.emailSelector = creds.emailField;
+        }
+      }
+
+      // Support both 'passwordSelector' and 'passwordField'
+      if (creds.passwordSelector && !creds.passwordField) {
+        // passwordSelector is CSS, keep it
+      }
+      if (creds.passwordField && !creds.passwordSelector) {
+        if (creds.passwordField.startsWith('#') || creds.passwordField.startsWith('.') || creds.passwordField.includes('[')) {
+          creds.passwordSelector = creds.passwordField;
+        }
+      }
+
+      // Support both 'submitSelector' and 'submitButton'
+      if (creds.submitSelector && !creds.submitButton) {
+        // submitSelector is CSS
+      }
+      if (creds.submitButton && !creds.submitSelector) {
+        if (creds.submitButton.startsWith('#') || creds.submitButton.startsWith('.') || creds.submitButton.includes('[')) {
+          creds.submitSelector = creds.submitButton;
+        }
+      }
+    }
+
+    // Validate and warn about unknown fields
+    this.validateConfigFields(normalized);
+
+    return normalized;
+  }
+
+  /**
+   * Validate config and warn about unknown/deprecated fields
+   */
+  validateConfigFields(config) {
+    const knownFields = {
+      platform: ['name', 'baseUrl'],
+      auth: ['type', 'loginUrl', 'credentials', 'successUrl', 'waitAfterLogin'],
+      'auth.credentials': ['email', 'password', 'emailField', 'emailSelector', 'passwordField', 'passwordSelector', 'submitButton', 'submitSelector'],
+      capture: ['mode', 'maxPages', 'maxDepth', 'viewports', 'interactions', 'include', 'manualPages', 'exclude', 'waitAfterLoad', 'waitAfterInteraction'],
+      output: ['directory', 'screenshots', 'html', 'designTokens'],
+      validation: ['minPages', 'minColors', 'requireDetailPages', 'requireAllTabs']
+    };
+
+    const warnings = [];
+
+    // Check top-level unknown fields
+    const topLevelKnown = ['platform', 'auth', 'capture', 'output', 'validation'];
+    Object.keys(config).forEach(key => {
+      if (!topLevelKnown.includes(key)) {
+        warnings.push(`Unknown config field: '${key}' - this will be ignored`);
+      }
+    });
+
+    // Check nested fields
+    Object.entries(knownFields).forEach(([section, fields]) => {
+      const sectionParts = section.split('.');
+      let obj = config;
+      for (const part of sectionParts) {
+        obj = obj?.[part];
+      }
+      if (obj && typeof obj === 'object') {
+        Object.keys(obj).forEach(key => {
+          if (!fields.includes(key) && typeof obj[key] !== 'object') {
+            warnings.push(`Unknown config field in ${section}: '${key}' - this will be ignored`);
+          }
+        });
+      }
+    });
+
+    if (warnings.length > 0) {
+      console.log('\n⚠ Configuration warnings:');
+      warnings.forEach(w => console.log(`  - ${w}`));
+      console.log('');
+    }
+  }
+
   log(message, type = 'info') {
+    const colors = {
+      info: '\x1b[36m',    // cyan
+      success: '\x1b[32m', // green
+      warning: '\x1b[33m', // yellow
+      error: '\x1b[31m',   // red
+      step: '\x1b[90m',    // gray
+      progress: '\x1b[35m', // magenta
+      reset: '\x1b[0m'
+    };
     const prefix = {
       info: '→',
       success: '✓',
       warning: '⚠',
       error: '✗',
-      step: '•'
+      step: '•',
+      progress: '◐'
     }[type] || '→';
-    console.log(`${prefix} ${message}`);
+    console.log(`${colors[type] || ''}${prefix} ${message}${colors.reset}`);
+  }
+
+  /**
+   * Display progress for multi-item operations
+   */
+  logProgress(current, total, message) {
+    const percent = Math.round((current / total) * 100);
+    const bar = this.createProgressBar(percent);
+    process.stdout.write(`\r\x1b[35m${bar}\x1b[0m ${current}/${total} ${message}    `);
+    if (current === total) {
+      console.log(''); // New line when complete
+    }
+  }
+
+  createProgressBar(percent, width = 20) {
+    const filled = Math.round((percent / 100) * width);
+    const empty = width - filled;
+    return `[${'█'.repeat(filled)}${'░'.repeat(empty)}] ${percent}%`;
+  }
+
+  /**
+   * Display spinner for ongoing operations
+   */
+  showSpinner(message) {
+    const frames = ['◐', '◓', '◑', '◒'];
+    let i = 0;
+    this._spinnerInterval = setInterval(() => {
+      process.stdout.write(`\r\x1b[35m${frames[i]} ${message}...\x1b[0m   `);
+      i = (i + 1) % frames.length;
+    }, 100);
+  }
+
+  hideSpinner(message, success = true) {
+    if (this._spinnerInterval) {
+      clearInterval(this._spinnerInterval);
+      this._spinnerInterval = null;
+    }
+    const icon = success ? '\x1b[32m✓\x1b[0m' : '\x1b[31m✗\x1b[0m';
+    console.log(`\r${icon} ${message}                    `);
   }
 
   exec(command) {
@@ -127,14 +284,13 @@ class CaptureEngine {
   }
 
   async authenticate() {
-    this.log('Authenticating...', 'info');
-
     const auth = this.config.auth;
     const loginUrl = `${this.config.platform.baseUrl}${auth.loginUrl || '/login'}`;
 
-    // Navigate to login
+    this.showSpinner('Navigating to login page');
     this.browser(`open ${loginUrl}`);
     this.browser(`wait 2000`);
+    this.hideSpinner('Loaded login page', true);
 
     if (auth.type === 'form') {
       // Get credentials from environment or config
@@ -145,32 +301,198 @@ class CaptureEngine {
         throw new Error('Missing credentials. Set PLATFORM_EMAIL and PLATFORM_PASSWORD environment variables.');
       }
 
-      // Find and fill form fields
-      const emailField = auth.credentials?.emailField || 'email';
-      const passwordField = auth.credentials?.passwordField || 'password';
-      const submitButton = auth.credentials?.submitButton || 'Sign in';
+      // Get snapshot of interactive elements to find form fields
+      const snapshot = this.browser('snapshot -i');
+      if (!snapshot.success) {
+        throw new Error('Could not get page snapshot for login form');
+      }
 
-      this.browser(`find label "${emailField}" fill "${email}"`);
-      this.browser(`find label "${passwordField}" fill "${password}"`);
-      this.browser(`find text "${submitButton}" click`);
+      // Parse snapshot to find form elements
+      const formElements = this.parseLoginForm(snapshot.output, auth.credentials);
+
+      if (!formElements.emailRef && !formElements.emailSelector) {
+        this.log('Login form analysis:', 'warning');
+        this.log(snapshot.output.substring(0, 1000), 'info');
+        throw new Error(
+          'Could not find email/username field on login page.\n\n' +
+          'Troubleshooting:\n' +
+          '1. Check the login URL is correct: ' + loginUrl + '\n' +
+          '2. Specify selectors in config:\n' +
+          '   auth.credentials.emailSelector = "#email"\n' +
+          '   auth.credentials.passwordSelector = "#password"\n' +
+          '   auth.credentials.submitSelector = "button[type=submit]"\n' +
+          '3. Run with --headed flag to see the browser'
+        );
+      }
+
+      // Fill email field (prefer ref, fallback to selector)
+      if (formElements.emailRef) {
+        this.browser(`fill ${formElements.emailRef} "${email}"`);
+      } else if (formElements.emailSelector) {
+        this.browser(`fill "${formElements.emailSelector}" "${email}"`);
+      }
+
+      // Fill password field
+      if (formElements.passwordRef) {
+        this.browser(`fill ${formElements.passwordRef} "${password}"`);
+      } else if (formElements.passwordSelector) {
+        this.browser(`fill "${formElements.passwordSelector}" "${password}"`);
+      }
+
+      // Click submit button
+      this.showSpinner('Logging in');
+      if (formElements.submitRef) {
+        this.browser(`click ${formElements.submitRef}`);
+      } else if (formElements.submitSelector) {
+        this.browser(`click "${formElements.submitSelector}"`);
+      } else {
+        // Fallback: try pressing Enter
+        this.browser('press Enter');
+      }
+
       this.browser(`wait 3000`);
+      this.hideSpinner('Login submitted', true);
 
       // Verify login success
       const currentUrl = this.browser('get url').output;
-      if (currentUrl.includes('login')) {
-        throw new Error('Authentication failed - still on login page');
+      if (currentUrl && currentUrl.includes('login')) {
+        // Get page state for debugging
+        const pageSnapshot = this.browser('snapshot -i').output || '';
+        const errorText = this.extractErrorMessages(pageSnapshot);
+
+        throw new Error(
+          'Authentication failed - still on login page.\n\n' +
+          'Possible causes:\n' +
+          '1. Incorrect credentials\n' +
+          '2. CAPTCHA or 2FA required\n' +
+          '3. Account locked or needs verification\n' +
+          (errorText ? '\nPage errors found: ' + errorText + '\n' : '') +
+          '\nCurrent URL: ' + currentUrl + '\n' +
+          '\nTry running with --headed to see the browser window.'
+        );
       }
     }
 
     this.log('Authentication successful', 'success');
   }
 
-  async discoverPages() {
-    this.log('Discovering pages...', 'info');
+  /**
+   * Parse login form snapshot to find email, password, and submit elements
+   * Uses refs from snapshot for unambiguous element targeting
+   */
+  parseLoginForm(snapshot, credentials = {}) {
+    const elements = {
+      emailRef: null,
+      emailSelector: credentials?.emailSelector || null,
+      passwordRef: null,
+      passwordSelector: credentials?.passwordSelector || null,
+      submitRef: null,
+      submitSelector: credentials?.submitSelector || null
+    };
 
+    // If explicit selectors provided, use those
+    if (elements.emailSelector && elements.passwordSelector) {
+      return elements;
+    }
+
+    const lines = snapshot.split('\n');
+
+    // Keywords to identify email fields
+    const emailKeywords = ['email', 'username', 'user', 'login', 'account', 'e-mail'];
+    const passwordKeywords = ['password', 'pass', 'pwd', 'secret'];
+    const submitKeywords = ['sign in', 'log in', 'login', 'submit', 'continue', 'next'];
+
+    for (const line of lines) {
+      const lowerLine = line.toLowerCase();
+      const refMatch = line.match(/\[ref=(\w+)\]/);
+      const ref = refMatch ? `@${refMatch[1]}` : null;
+
+      // Look for email/username field
+      if (!elements.emailRef && ref) {
+        if (lowerLine.includes('textbox') || lowerLine.includes('input')) {
+          // Check for email type or email-related text
+          if (lowerLine.includes('type="email"') ||
+              emailKeywords.some(kw => lowerLine.includes(kw))) {
+            elements.emailRef = ref;
+            continue;
+          }
+        }
+      }
+
+      // Look for password field
+      if (!elements.passwordRef && ref) {
+        if (lowerLine.includes('type="password"') ||
+            (lowerLine.includes('textbox') && passwordKeywords.some(kw => lowerLine.includes(kw)))) {
+          elements.passwordRef = ref;
+          continue;
+        }
+      }
+
+      // Look for submit button
+      if (!elements.submitRef && ref) {
+        if (lowerLine.includes('button') && !lowerLine.includes('[disabled]')) {
+          if (submitKeywords.some(kw => lowerLine.includes(kw))) {
+            elements.submitRef = ref;
+          }
+        }
+      }
+    }
+
+    // Fallback: if we found a password field but no email, find the first textbox before it
+    if (elements.passwordRef && !elements.emailRef) {
+      let foundPassword = false;
+      for (let i = lines.length - 1; i >= 0; i--) {
+        const line = lines[i];
+        const lowerLine = line.toLowerCase();
+        const refMatch = line.match(/\[ref=(\w+)\]/);
+        const ref = refMatch ? `@${refMatch[1]}` : null;
+
+        if (ref === elements.passwordRef) {
+          foundPassword = true;
+          continue;
+        }
+
+        if (foundPassword && ref &&
+            (lowerLine.includes('textbox') || lowerLine.includes('input')) &&
+            !lowerLine.includes('type="password"')) {
+          elements.emailRef = ref;
+          break;
+        }
+      }
+    }
+
+    return elements;
+  }
+
+  /**
+   * Extract error messages from page snapshot
+   */
+  extractErrorMessages(snapshot) {
+    const errorPatterns = [
+      /error[:\s]+"([^"]+)"/gi,
+      /invalid[:\s]+"([^"]+)"/gi,
+      /failed[:\s]+"([^"]+)"/gi,
+      /alert[:\s]+"([^"]+)"/gi
+    ];
+
+    const errors = [];
+    for (const pattern of errorPatterns) {
+      const matches = snapshot.match(pattern);
+      if (matches) {
+        errors.push(...matches);
+      }
+    }
+
+    return errors.slice(0, 3).join(', ');
+  }
+
+  async discoverPages() {
     const mode = this.config.capture?.mode || 'auto';
     const maxPages = this.config.capture?.maxPages || 100;
     const maxDepth = this.config.capture?.maxDepth || 5;
+
+    this.showSpinner(`Discovering pages (mode: ${mode}, max: ${maxPages})`);
+    console.log(''); // New line for spinner
 
     // Start from current page after login
     const startUrl = this.browser('get url').output;
@@ -189,7 +511,7 @@ class CaptureEngine {
     }
 
     this.stats.pagesDiscovered = this.discoveredUrls.size;
-    this.log(`Discovered ${this.discoveredUrls.size} pages`, 'success');
+    this.hideSpinner(`Discovered ${this.discoveredUrls.size} pages`, true);
   }
 
   async autoDiscover(url, depth, maxDepth, maxPages) {
@@ -258,8 +580,17 @@ class CaptureEngine {
 
     const outputDir = this.config.output?.directory || './references';
     const viewports = this.config.capture?.viewports || [{ name: 'desktop', width: 1920, height: 1080 }];
+    const totalPages = this.discoveredUrls.size;
+    let currentPage = 0;
+
+    console.log(`  Viewports: ${viewports.map(v => v.name).join(', ')}`);
+    console.log(`  Total pages to capture: ${totalPages}\n`);
 
     for (const url of this.discoveredUrls) {
+      currentPage++;
+      const pageName = this.urlToPageName(url);
+      this.logProgress(currentPage, totalPages, pageName);
+
       try {
         await this.capturePage(url, outputDir, viewports);
       } catch (error) {
@@ -269,7 +600,8 @@ class CaptureEngine {
       }
     }
 
-    this.log(`Captured ${this.stats.pagesCaptured} pages`, 'success');
+    console.log('');
+    this.log(`Captured ${this.stats.pagesCaptured} pages, ${this.stats.screenshotsTaken} screenshots`, 'success');
   }
 
   async capturePage(url, outputDir, viewports) {

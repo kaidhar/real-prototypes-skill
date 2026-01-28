@@ -1,5 +1,5 @@
 ---
-name: real-prototypes
+name: real-prototypes-skill
 description: Capture an existing web platform's visual design and generate feature prototypes that match its style. Use when a product manager or developer wants to prototype a new feature for an existing platform.
 allowed-tools: Bash(agent-browser:*), Bash(npm:*), Bash(npx:*), Bash(mkdir:*), Bash(node:*)
 ---
@@ -36,10 +36,10 @@ Enterprise-grade tool for capturing web platforms and generating pixel-perfect p
 
 ```bash
 # Create a new project
-node .claude/skills/real-prototypes/cli.js new --project my-app
+node .claude/skills/real-prototypes-skill/cli.js new --project my-app
 
 # Full Pipeline (recommended)
-node .claude/skills/real-prototypes/cli.js pipeline \
+node .claude/skills/real-prototypes-skill/cli.js pipeline \
   --project my-app \
   --url https://app.example.com \
   --email user@test.com \
@@ -61,7 +61,7 @@ node cli.js list
 All projects are stored in the `projects/` directory:
 
 ```
-real-prototypes/
+real-prototypes-skill/
 ├── projects/
 │   ├── my-app/
 │   │   ├── project.json      # Project metadata
@@ -75,7 +75,7 @@ real-prototypes/
 │   │       └── package.json
 │   └── another-project/
 │       └── ...
-└── .claude/skills/real-prototypes/
+└── .claude/skills/real-prototypes-skill/
 ```
 
 ---
@@ -275,7 +275,7 @@ className="text-text-heading"
 
 ### MANDATORY: After Generating
 ```bash
-node .claude/skills/real-prototypes/cli.js validate --project <project> --phase post-gen
+node .claude/skills/real-prototypes-skill/cli.js validate --project <project> --phase post-gen
 ```
 
 ---

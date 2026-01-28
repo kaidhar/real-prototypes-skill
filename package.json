@@ -1,5 +1,5 @@
 {
-  "name": "real-prototypes",
+  "name": "real-prototypes-skill",
   "version": "1.0.3",
   "description": "Capture any web platform and generate pixel-perfect prototypes that match its design. A Claude Code skill for rapid feature prototyping.",
   "keywords": [
@@ -16,18 +16,18 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/kaidhar/real-prototypes.git"
+    "url": "git+https://github.com/kaidhar/real-prototypes-skill.git"
   },
   "bugs": {
-    "url": "https://github.com/kaidhar/real-prototypes/issues"
+    "url": "https://github.com/kaidhar/real-prototypes-skill/issues"
   },
-  "homepage": "https://github.com/kaidhar/real-prototypes#readme",
+  "homepage": "https://github.com/kaidhar/real-prototypes-skill#readme",
   "bin": {
-    "real-prototypes": "./bin/cli.js"
+    "real-prototypes-skill": "./bin/cli.js"
   },
   "files": [
     "bin/",
-    ".claude/skills/real-prototypes/",
+    ".claude/skills/real-prototypes-skill/",
     ".claude/skills/agent-browser-skill/",
     ".env.example",
     "README.md",

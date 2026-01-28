@@ -27,7 +27,7 @@ WAIT_AFTER_LOAD=5000
 
 ```bash
 cd /path/to/project
-node .claude/skills/real-prototypes/scripts/full-site-capture.js
+node .claude/skills/real-prototypes-skill/scripts/full-site-capture.js
 ```
 
 This creates `capture-site.sh` in your project root.
@@ -148,7 +148,7 @@ CAPTURE_MODE=manual
 ### Test Validation Logic
 
 ```bash
-node .claude/skills/real-prototypes/scripts/test-validation.js
+node .claude/skills/real-prototypes-skill/scripts/test-validation.js
 ```
 
 ### Test Single Page

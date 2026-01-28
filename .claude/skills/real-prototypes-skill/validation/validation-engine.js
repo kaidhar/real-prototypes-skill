@@ -142,8 +142,24 @@ class ValidationEngine {
       });
     }
 
-    // Check for common page patterns
-    const pageNames = manifest.pages?.map(p => p.name.toLowerCase()) || [];
+    // Validate page entries have required fields
+    const pagesWithMissingNames = (manifest.pages || []).filter(p => !p.name);
+    if (pagesWithMissingNames.length > 0) {
+      checks.push({
+        name: 'Page entries have names',
+        passed: false,
+        message: `${pagesWithMissingNames.length} pages missing 'name' field. Check manifest.json structure.`
+      });
+      this.warnings.push(
+        'Pages missing name field - manifest.json may be malformed. ' +
+        'Each page entry requires: { name: "page-name", url: "/path", screenshot: "screenshots/file.png" }'
+      );
+    }
+
+    // Check for common page patterns (safely handle missing names)
+    const pageNames = (manifest.pages || [])
+      .filter(p => p && p.name)
+      .map(p => p.name.toLowerCase());
 
     // List pages should have detail pages
     const listPages = pageNames.filter(n => n.includes('list') || n.includes('accounts') || n.includes('contacts'));

@@ -4,7 +4,7 @@
 
 A Claude Code skill that helps product managers and developers rapidly prototype new features for existing platforms by capturing visual references and generating production-ready Next.js + Tailwind code.
 
-[![npm version](https://img.shields.io/npm/v/real-prototypes.svg)](https://www.npmjs.com/package/real-prototypes)
+[![npm version](https://img.shields.io/npm/v/real-prototypes-skill.svg)](https://www.npmjs.com/package/real-prototypes-skill)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Claude Code](https://img.shields.io/badge/Claude-Code-orange)](https://claude.ai/code)
 
@@ -33,10 +33,10 @@ Perfect for:
 
 ```bash
 # Install to current project
-npx real-prototypes
+npx real-prototypes-skill
 
 # Or install globally
-npx real-prototypes --global
+npx real-prototypes-skill --global
 ```
 
 **Option 2: Clone Repository**
@@ -46,7 +46,7 @@ npx real-prototypes --global
 cd ~/.claude/skills
 
 # Clone this repository
-git clone https://github.com/kaidhar/real-prototypes.git
+git clone https://github.com/kaidhar/real-prototypes-skill.git
 ```
 
 **Option 3: Add to Existing Project**
@@ -56,7 +56,7 @@ git clone https://github.com/kaidhar/real-prototypes.git
 cd your-project/.claude/skills
 
 # Clone or add as submodule
-git clone https://github.com/kaidhar/real-prototypes.git
+git clone https://github.com/kaidhar/real-prototypes-skill.git
 ```
 
 ### Verify Installation
@@ -65,7 +65,7 @@ After installation, you should see the skill in your `.claude/skills/` directory
 
 ```
 .claude/skills/
-└── real-prototypes/
+└── real-prototypes-skill/
     ├── SKILL.md
     ├── scripts/
     ├── templates/
@@ -267,7 +267,7 @@ Create `capture-config.json`:
 
 ## Examples
 
-Check out the [examples directory](./.claude/skills/real-prototypes/examples/) for complete projects:
+Check out the [examples directory](./.claude/skills/real-prototypes-skill/examples/) for complete projects:
 
 ### Amazon Chatbot
 A fully functional shopping assistant with:
@@ -276,7 +276,7 @@ A fully functional shopping assistant with:
 - Order tracking system
 - Checkout flow
 
-**[View Example →](./.claude/skills/real-prototypes/examples/amazon-chatbot/)**
+**[View Example →](./.claude/skills/real-prototypes-skill/examples/amazon-chatbot/)**
 
 ---
 
@@ -326,8 +326,8 @@ The skill includes a CLI for project management:
 
 ```bash
 # Create new project
-npx real-prototypes
-cd .claude/skills/real-prototypes
+npx real-prototypes-skill
+cd .claude/skills/real-prototypes-skill
 node cli.js new --project my-app
 
 # Capture platform design
@@ -364,11 +364,11 @@ Contributions welcome! Here's how:
 
 ```bash
 # Clone the repository
-git clone https://github.com/kaidhar/real-prototypes.git
-cd real-prototypes
+git clone https://github.com/kaidhar/real-prototypes-skill.git
+cd real-prototypes-skill
 
 # Test locally
-cd .claude/skills/real-prototypes/examples/amazon-chatbot/prototype
+cd .claude/skills/real-prototypes-skill/examples/amazon-chatbot/prototype
 npm install
 npm run dev
 ```
@@ -434,10 +434,10 @@ MIT License - See [LICENSE](LICENSE) file for details.
 
 ## Links
 
-- [Documentation](./.claude/skills/real-prototypes/SKILL.md)
-- [Report Issues](https://github.com/kaidhar/real-prototypes/issues)
-- [Discussions](https://github.com/kaidhar/real-prototypes/discussions)
-- [Examples](./.claude/skills/real-prototypes/examples/)
+- [Documentation](./.claude/skills/real-prototypes-skill/SKILL.md)
+- [Report Issues](https://github.com/kaidhar/real-prototypes-skill/issues)
+- [Discussions](https://github.com/kaidhar/real-prototypes-skill/discussions)
+- [Examples](./.claude/skills/real-prototypes-skill/examples/)
 
 ---
 

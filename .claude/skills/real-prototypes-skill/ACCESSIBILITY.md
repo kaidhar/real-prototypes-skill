@@ -579,7 +579,7 @@ cd prototype
 npm run validate:a11y
 
 # Or use absolute path
-node /path/to/.claude/skills/real-prototypes/scripts/validate-accessibility.js .
+node /path/to/.claude/skills/real-prototypes-skill/scripts/validate-accessibility.js .
 ```
 
 ---
@@ -594,7 +594,7 @@ node /path/to/.claude/skills/real-prototypes/scripts/validate-accessibility.js .
 npm install --save-dev eslint-plugin-jsx-a11y
 
 # Or run integration script
-../.claude/skills/real-prototypes/scripts/integrate-accessibility.sh
+../.claude/skills/real-prototypes-skill/scripts/integrate-accessibility.sh
 ```
 
 ---

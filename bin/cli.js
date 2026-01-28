@@ -6,8 +6,8 @@
  * Installs the platform prototyping skill to your Claude Code environment.
  *
  * Usage:
- *   npx real-prototypes          # Install the skill
- *   npx real-prototypes --help   # Show help
+ *   npx real-prototypes-skill          # Install the skill
+ *   npx real-prototypes-skill --help   # Show help
  */
 
 const fs = require('fs');
@@ -15,7 +15,7 @@ const path = require('path');
 const os = require('os');
 
 const VERSION = '1.0.0';
-const SKILL_NAME = 'real-prototypes';
+const SKILL_NAME = 'real-prototypes-skill';
 
 function log(message, type = 'info') {
   const styles = {
@@ -45,7 +45,7 @@ function showHelp() {
   showBanner();
   console.log(`
 \x1b[1mUSAGE\x1b[0m
-  npx real-prototypes [command] [options]
+  npx real-prototypes-skill [command] [options]
 
 \x1b[1mCOMMANDS\x1b[0m
   install     Install the skill to your Claude Code environment (default)
@@ -59,13 +59,13 @@ function showHelp() {
 
 \x1b[1mEXAMPLES\x1b[0m
   # Install to current project
-  npx real-prototypes
+  npx real-prototypes-skill
 
   # Install globally
-  npx real-prototypes --global
+  npx real-prototypes-skill --global
 
   # Force reinstall
-  npx real-prototypes --force
+  npx real-prototypes-skill --force
 
 \x1b[1mAFTER INSTALLATION\x1b[0m
   1. Add platform credentials to your CLAUDE.md:
@@ -77,10 +77,10 @@ function showHelp() {
      PLATFORM_PASSWORD=your-password
      \`\`\`
 
-  2. Use the /real-prototypes skill in Claude Code to capture and prototype
+  2. Use the /real-prototypes-skill skill in Claude Code to capture and prototype
 
 \x1b[1mLEARN MORE\x1b[0m
-  https://github.com/kaidhar/real-prototypes
+  https://github.com/kaidhar/real-prototypes-skill
   `);
 }
 
@@ -106,7 +106,7 @@ function copyRecursive(src, dest) {
 }
 
 function getSkillSource() {
-  // When installed via npm, the skill files are in .claude/skills/real-prototypes
+  // When installed via npm, the skill files are in .claude/skills/real-prototypes-skill
   // relative to the package root
   const packageRoot = path.resolve(__dirname, '..');
   const skillDir = path.join(packageRoot, '.claude', 'skills', SKILL_NAME);
@@ -131,7 +131,7 @@ function install(options) {
   if (!skillSource) {
     log('Could not find skill source files', 'error');
     log('This might be a packaging issue. Please report at:', 'info');
-    log('https://github.com/kaidhar/real-prototypes/issues', 'info');
+    log('https://github.com/kaidhar/real-prototypes-skill/issues', 'info');
     process.exit(1);
   }
 
@@ -218,7 +218,7 @@ function install(options) {
 
 3. Start Claude Code and use the skill:
 
-   \x1b[36m/real-prototypes\x1b[0m
+   \x1b[36m/real-prototypes-skill\x1b[0m
 
 4. Follow the prompts to capture and prototype!
 
@@ -227,10 +227,10 @@ function install(options) {
   ${targetDir}/QUICKSTART.md
 
 \x1b[1mExample Config:\x1b[0m
-  See .claude/skills/real-prototypes/examples/CLAUDE.md.example for a complete configuration template.
+  See .claude/skills/real-prototypes-skill/examples/CLAUDE.md.example for a complete configuration template.
 
 \x1b[1mNeed Help?\x1b[0m
-  https://github.com/kaidhar/real-prototypes
+  https://github.com/kaidhar/real-prototypes-skill
   `);
 }
 

@@ -192,7 +192,7 @@ Generate working prototypes using:
     "category": "setup",
     "description": "Create the skill file structure and base SKILL.md definition",
     "steps": [
-      "Create directory .claude/skills/real-prototypes/",
+      "Create directory .claude/skills/real-prototypes-skill/",
       "Create SKILL.md with skill metadata and trigger patterns",
       "Define the three-phase workflow structure in the skill"
     ],

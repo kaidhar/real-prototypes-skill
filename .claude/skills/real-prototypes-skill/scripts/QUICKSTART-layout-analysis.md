@@ -4,13 +4,13 @@
 
 ```bash
 # Run analysis
-node .claude/skills/real-prototypes/scripts/analyze-layout.js references
+node .claude/skills/real-prototypes-skill/scripts/analyze-layout.js references
 
 # Verify output
-./.claude/skills/real-prototypes/scripts/verify-layout-analysis.sh references
+./.claude/skills/real-prototypes-skill/scripts/verify-layout-analysis.sh references
 
 # Test and view insights
-node .claude/skills/real-prototypes/scripts/test-analyze-layout.js references
+node .claude/skills/real-prototypes-skill/scripts/test-analyze-layout.js references
 ```
 
 **Output**: `structure-manifest.json` + 14 `component-map-*.json` files
@@ -106,7 +106,7 @@ node test-analyze-layout.js references
 **Error: References directory not found**
 ```bash
 # Run capture first
-node .claude/skills/real-prototypes/scripts/full-site-capture.js
+node .claude/skills/real-prototypes-skill/scripts/full-site-capture.js
 ```
 
 **Error: No HTML files found**

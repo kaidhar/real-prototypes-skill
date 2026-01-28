@@ -48,7 +48,7 @@ function showHelp() {
   showBanner();
   console.log(`
 \x1b[1mUSAGE\x1b[0m
-  real-prototypes <command> [options]
+  real-prototypes-skill <command> [options]
 
 \x1b[1mCOMMANDS\x1b[0m
   new         Create a new project
@@ -82,22 +82,22 @@ function showHelp() {
 
 \x1b[1mEXAMPLES\x1b[0m
   # Create a new project
-  real-prototypes new --project my-app
+  real-prototypes-skill new --project my-app
 
   # Capture a platform
-  real-prototypes capture --project my-app --url https://app.example.com --email user@test.com --password secret
+  real-prototypes-skill capture --project my-app --url https://app.example.com --email user@test.com --password secret
 
   # Validate capture
-  real-prototypes validate --project my-app --phase post-capture
+  real-prototypes-skill validate --project my-app --phase post-capture
 
   # Generate prototype
-  real-prototypes generate --project my-app
+  real-prototypes-skill generate --project my-app
 
   # Run full pipeline
-  real-prototypes pipeline --project my-app --url https://app.example.com --email user@test.com --password secret
+  real-prototypes-skill pipeline --project my-app --url https://app.example.com --email user@test.com --password secret
 
   # List all projects
-  real-prototypes list
+  real-prototypes-skill list
 
 \x1b[1mENVIRONMENT VARIABLES\x1b[0m
   PLATFORM_EMAIL     Login email (alternative to --email)
@@ -179,7 +179,7 @@ function parseArgs(args) {
 function requireProject(options, command) {
   if (!options.project) {
     log(`--project is required for ${command} command`, 'error');
-    log('Example: real-prototypes ' + command + ' --project my-app', 'info');
+    log('Example: real-prototypes-skill ' + command + ' --project my-app', 'info');
     process.exit(1);
   }
 }
@@ -193,7 +193,7 @@ function runNew(options) {
 
   if (!options.project) {
     log('--project is required for new command', 'error');
-    log('Example: real-prototypes new --project my-app', 'info');
+    log('Example: real-prototypes-skill new --project my-app', 'info');
     process.exit(1);
   }
 
@@ -237,10 +237,10 @@ function runNew(options) {
 
 \x1b[1mNext Steps:\x1b[0m
   1. Capture a platform:
-     real-prototypes capture --project ${options.project} --url https://your-platform.com
+     real-prototypes-skill capture --project ${options.project} --url https://your-platform.com
 
   2. Or run the full pipeline:
-     real-prototypes pipeline --project ${options.project} --url https://your-platform.com
+     real-prototypes-skill pipeline --project ${options.project} --url https://your-platform.com
   `);
 }
 
@@ -249,7 +249,7 @@ function runList() {
   log('Projects:', 'title');
 
   if (!fs.existsSync(PROJECTS_DIR)) {
-    log('No projects found. Create one with: real-prototypes new --project <name>', 'info');
+    log('No projects found. Create one with: real-prototypes-skill new --project <name>', 'info');
     return;
   }
 
@@ -279,7 +279,7 @@ function runList() {
     });
 
   if (projects.length === 0) {
-    log('No projects found. Create one with: real-prototypes new --project <name>', 'info');
+    log('No projects found. Create one with: real-prototypes-skill new --project <name>', 'info');
     return;
   }
 
@@ -418,7 +418,7 @@ async function runGenerate(options) {
   1. Use ONLY colors from design-tokens.json
   2. Match layout from screenshots exactly
   3. Use inline styles for colors (Tailwind custom colors may not work)
-  4. Validate with: real-prototypes validate --phase post-gen
+  4. Validate with: real-prototypes-skill validate --phase post-gen
 
 \x1b[1mRequired Colors:\x1b[0m
   Primary: ${tokens.colors?.primary || 'N/A'}
@@ -488,7 +488,7 @@ async function runPipeline(options) {
   1. Review screenshots in ${options.refs}/screenshots/
   2. Check design-tokens.json for color palette
   3. Generate prototype using the captured references
-  4. Run: real-prototypes validate --phase post-gen
+  4. Run: real-prototypes-skill validate --phase post-gen
   `);
 }
 
@@ -553,7 +553,7 @@ function runInit(options) {
   2. Set environment variables:
      export PLATFORM_EMAIL=your@email.com
      export PLATFORM_PASSWORD=yourpassword
-  3. Run: real-prototypes capture --config ${outputPath}
+  3. Run: real-prototypes-skill capture --config ${outputPath}
   `);
 }
 
@@ -591,6 +591,6 @@ switch (options.command) {
     break;
   default:
     log(`Unknown command: ${options.command}`, 'error');
-    log('Run "real-prototypes --help" for usage', 'info');
+    log('Run "real-prototypes-skill --help" for usage', 'info');
     process.exit(1);
 }

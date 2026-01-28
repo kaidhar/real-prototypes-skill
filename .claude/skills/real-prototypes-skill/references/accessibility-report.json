@@ -6,7 +6,7 @@
   "totalFixes": 5,
   "results": [
     {
-      "file": ".claude/skills/real-prototypes/templates/dashboard-widget.tsx.template",
+      "file": ".claude/skills/real-prototypes-skill/templates/dashboard-widget.tsx.template",
       "issueCount": 4,
       "fixCount": 1,
       "issues": [
@@ -46,7 +46,7 @@
       ]
     },
     {
-      "file": ".claude/skills/real-prototypes/templates/data-table.tsx.template",
+      "file": ".claude/skills/real-prototypes-skill/templates/data-table.tsx.template",
       "issueCount": 2,
       "fixCount": 1,
       "issues": [
@@ -72,7 +72,7 @@
       ]
     },
     {
-      "file": ".claude/skills/real-prototypes/templates/form-section.tsx.template",
+      "file": ".claude/skills/real-prototypes-skill/templates/form-section.tsx.template",
       "issueCount": 6,
       "fixCount": 1,
       "issues": [
@@ -127,7 +127,7 @@
       ]
     },
     {
-      "file": ".claude/skills/real-prototypes/templates/modal-dialog.tsx.template",
+      "file": ".claude/skills/real-prototypes-skill/templates/modal-dialog.tsx.template",
       "issueCount": 7,
       "fixCount": 1,
       "issues": [
@@ -190,7 +190,7 @@
       ]
     },
     {
-      "file": ".claude/skills/real-prototypes/templates/nav-item.tsx.template",
+      "file": ".claude/skills/real-prototypes-skill/templates/nav-item.tsx.template",
       "issueCount": 5,
       "fixCount": 1,
       "issues": [

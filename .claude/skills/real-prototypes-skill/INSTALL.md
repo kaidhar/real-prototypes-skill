@@ -23,14 +23,14 @@ cd ~/.claude/skills
 ### Step 2: Clone This Repository
 
 ```bash
-git clone https://github.com/kaidhar/real-prototypes.git
+git clone https://github.com/kaidhar/real-prototypes-skill.git
 ```
 
 ### Step 3: Verify Installation
 
 ```bash
 # List the skill directory
-ls -la real-prototypes
+ls -la real-prototypes-skill
 
 # You should see SKILL.md, README.md, cli.js, etc.
 ```
@@ -48,7 +48,7 @@ claude-code
 
 Tell Claude:
 ```
-Use the real-prototypes to capture design from amazon.in
+Use the real-prototypes-skill to capture design from amazon.in
 ```
 
 Claude should recognize and invoke the skill!
@@ -75,12 +75,12 @@ cd .claude/skills
 ### Step 3: Clone the Repository
 
 ```bash
-git clone https://github.com/kaidhar/real-prototypes.git
+git clone https://github.com/kaidhar/real-prototypes-skill.git
 ```
 
 Or add as a submodule:
 ```bash
-git submodule add https://github.com/kaidhar/real-prototypes.git
+git submodule add https://github.com/kaidhar/real-prototypes-skill.git
 ```
 
 ### Step 4: Restart Claude Code in This Project
@@ -101,14 +101,14 @@ claude-code
 /help
 ```
 
-Look for `real-prototypes` in the list of available skills.
+Look for `real-prototypes-skill` in the list of available skills.
 
 ### Test Run
 
 Tell Claude:
 ```
 I want to create a prototype that matches Amazon's design.
-Can you use the real-prototypes?
+Can you use the real-prototypes-skill?
 ```
 
 If Claude responds that it's using the skill, you're all set! ✅
@@ -124,7 +124,7 @@ If Claude responds that it's using the skill, you're all set! ✅
 **Solution**:
 1. Check the installation path:
    ```bash
-   ls ~/.claude/skills/real-prototypes/SKILL.md
+   ls ~/.claude/skills/real-prototypes-skill/SKILL.md
    ```
 2. Ensure `SKILL.md` exists (this is what Claude reads)
 3. Restart Claude Code completely
@@ -157,7 +157,7 @@ chmod 755 ~/.claude/skills
 1. Check if you're using the correct GitHub URL
 2. Try with HTTPS instead of SSH:
    ```bash
-   git clone https://github.com/kaidhar/real-prototypes.git
+   git clone https://github.com/kaidhar/real-prototypes-skill.git
    ```
 3. Check your network connection
 
@@ -168,14 +168,14 @@ chmod 755 ~/.claude/skills
 ### Global Installation Update
 
 ```bash
-cd ~/.claude/skills/real-prototypes
+cd ~/.claude/skills/real-prototypes-skill
 git pull origin main
 ```
 
 ### Project-Specific Update
 
 ```bash
-cd your-project/.claude/skills/real-prototypes
+cd your-project/.claude/skills/real-prototypes-skill
 git pull origin main
 ```
 
@@ -183,7 +183,7 @@ git pull origin main
 
 ```bash
 cd your-project
-git submodule update --remote .claude/skills/real-prototypes
+git submodule update --remote .claude/skills/real-prototypes-skill
 ```
 
 ---
@@ -193,23 +193,23 @@ git submodule update --remote .claude/skills/real-prototypes
 ### Remove Global Installation
 
 ```bash
-rm -rf ~/.claude/skills/real-prototypes
+rm -rf ~/.claude/skills/real-prototypes-skill
 ```
 
 ### Remove Project-Specific Installation
 
 ```bash
 cd your-project
-rm -rf .claude/skills/real-prototypes
+rm -rf .claude/skills/real-prototypes-skill
 ```
 
 ### Remove Submodule
 
 ```bash
 cd your-project
-git submodule deinit .claude/skills/real-prototypes
-git rm .claude/skills/real-prototypes
-rm -rf .git/modules/.claude/skills/real-prototypes
+git submodule deinit .claude/skills/real-prototypes-skill
+git rm .claude/skills/real-prototypes-skill
+rm -rf .git/modules/.claude/skills/real-prototypes-skill
 ```
 
 ---
@@ -242,7 +242,7 @@ npm --version
 
 After installation:
 
-1. **Read the README** - `cat ~/.claude/skills/real-prototypes/README.md`
+1. **Read the README** - `cat ~/.claude/skills/real-prototypes-skill/README.md`
 2. **Try the examples** - Check out the Amazon chatbot example
 3. **Build your first prototype** - Follow the usage guide in README.md
 
@@ -250,8 +250,8 @@ After installation:
 
 ## 💬 Getting Help
 
-- **GitHub Issues**: [Report a problem](https://github.com/kaidhar/real-prototypes/issues)
-- **Discussions**: [Ask questions](https://github.com/kaidhar/real-prototypes/discussions)
+- **GitHub Issues**: [Report a problem](https://github.com/kaidhar/real-prototypes-skill/issues)
+- **Discussions**: [Ask questions](https://github.com/kaidhar/real-prototypes-skill/discussions)
 - **Documentation**: [Read SKILL.md](./SKILL.md)
 
 ---
