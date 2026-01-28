@@ -1,15 +1,16 @@
-# Platform Prototype Skill for Claude Code
+# Real Prototypes
 
 > **Capture any web platform's design and generate pixel-perfect Next.js prototypes that match the original style**
 
 A Claude Code skill that helps product managers and developers rapidly prototype new features for existing platforms by capturing visual references and generating production-ready Next.js + Tailwind code.
 
+[![npm version](https://img.shields.io/npm/v/real-prototypes.svg)](https://www.npmjs.com/package/real-prototypes)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Claude Code](https://img.shields.io/badge/Claude-Code-orange)](https://claude.ai/code)
 
 ---
 
-## 📦 What This Skill Does
+## What This Skill Does
 
 This skill enables Claude Code to:
 1. **Capture** - Screenshot and extract design tokens (colors, fonts) from any web platform
@@ -24,54 +25,63 @@ Perfect for:
 
 ---
 
-## 🚀 Quick Start
+## Quick Start
 
 ### Installation
 
-**Option 1: Install as a Claude Code Skill (Recommended)**
+**Option 1: npx (Recommended)**
+
+```bash
+# Install to current project
+npx real-prototypes
+
+# Or install globally
+npx real-prototypes --global
+```
+
+**Option 2: Clone Repository**
 
 ```bash
 # Navigate to your Claude Code skills directory
 cd ~/.claude/skills
 
 # Clone this repository
-git clone https://github.com/kaidhar/platform-prototype-skill.git
-
-# Restart Claude Code to load the skill
+git clone https://github.com/kaidhar/real-prototypes.git
 ```
 
-**Option 2: Add to Existing Project**
+**Option 3: Add to Existing Project**
 
 ```bash
 # In your project directory
 cd your-project/.claude/skills
 
 # Clone or add as submodule
-git clone https://github.com/kaidhar/platform-prototype-skill.git
-
-# Or as a submodule
-git submodule add https://github.com/kaidhar/platform-prototype-skill.git
+git clone https://github.com/kaidhar/real-prototypes.git
 ```
 
 ### Verify Installation
 
-```bash
-# List installed skills
-claude-code skill list
+After installation, you should see the skill in your `.claude/skills/` directory:
 
-# You should see "platform-prototype-skill" in the output
+```
+.claude/skills/
+└── real-prototypes/
+    ├── SKILL.md
+    ├── scripts/
+    ├── templates/
+    └── ...
 ```
 
 ---
 
-## 🎯 Usage
+## Usage
 
 ### Example 1: Build an Amazon-Style Chatbot
 
 ```bash
 # Open Claude Code in your project
 cd your-project
-claude-code
+claude
 ```
 
 Then tell Claude:
@@ -103,14 +113,14 @@ design. Include payment selection and order summary.
 
 ---
 
-## 📋 Prerequisites
+## Prerequisites
 
 ### Required
 
 - **Claude Code CLI** (v0.5.0+)
   ```bash
   # Install from https://claude.ai/code
-  curl -fsSL https://claude.ai/install | sh
+  npm install -g @anthropic-ai/claude-code
   ```
 
 - **Node.js 18+**
@@ -118,11 +128,7 @@ design. Include payment selection and order summary.
   node --version  # Should be v18.0.0 or higher
   ```
 
-- **agent-browser-skill** (usually included with Claude Code)
-  ```bash
-  # Verify installation
-  ls ~/.claude/skills/agent-browser-skill
-  ```
+- **agent-browser-skill** (installed automatically with npx)
 
 ### Optional (Enhances Features)
 
@@ -131,7 +137,7 @@ design. Include payment selection and order summary.
 
 ---
 
-## 🎨 What Gets Generated
+## What Gets Generated
 
 ### Project Structure
 
@@ -197,7 +203,7 @@ projects/
 
 ---
 
-## 🛠️ Running Your Prototype
+## Running Your Prototype
 
 ```bash
 # Navigate to the generated prototype
@@ -215,7 +221,7 @@ open http://localhost:3000
 
 ---
 
-## 💡 Configuration (Optional)
+## Configuration (Optional)
 
 ### Set Platform Credentials
 
@@ -238,7 +244,7 @@ VIEWPORT_HEIGHT=1080
 
 ### Customize Capture Behavior
 
-Create `.claude/skills/platform-prototype-skill/capture-config.json`:
+Create `capture-config.json`:
 
 ```json
 {
@@ -259,9 +265,9 @@ Create `.claude/skills/platform-prototype-skill/capture-config.json`:
 
 ---
 
-## 📚 Examples
+## Examples
 
-Check out the [examples directory](./examples/) for complete projects:
+Check out the [examples directory](./.claude/skills/real-prototypes/examples/) for complete projects:
 
 ### Amazon Chatbot
 A fully functional shopping assistant with:
@@ -270,11 +276,11 @@ A fully functional shopping assistant with:
 - Order tracking system
 - Checkout flow
 
-**[View Example →](./examples/amazon-chatbot/)**
+**[View Example →](./.claude/skills/real-prototypes/examples/amazon-chatbot/)**
 
 ---
 
-## 🎓 How It Works
+## How It Works
 
 ### Phase 1: Capture (Automatic)
 
@@ -312,14 +318,16 @@ Claude generates:
 
 ---
 
-## 🔧 Advanced Usage
+## Advanced Usage
 
 ### CLI Tool
 
-The skill includes a CLI for validation:
+The skill includes a CLI for project management:
 
 ```bash
 # Create new project
+npx real-prototypes
+cd .claude/skills/real-prototypes
 node cli.js new --project my-app
 
 # Capture platform design
@@ -336,13 +344,13 @@ node cli.js pipeline --project my-app --url https://example.com
 
 The skill enforces quality gates:
 
-- ✅ **Post-Capture**: Ensures minimum pages, colors, and screenshots
-- ✅ **Pre-Generation**: Verifies design tokens and manifests exist
-- ✅ **Post-Generation**: Checks colors match design tokens
+- **Post-Capture**: Ensures minimum pages, colors, and screenshots
+- **Pre-Generation**: Verifies design tokens and manifests exist
+- **Post-Generation**: Checks colors match design tokens
 
 ---
 
-## 🤝 Contributing
+## Contributing
 
 Contributions welcome! Here's how:
 
@@ -356,22 +364,22 @@ Contributions welcome! Here's how:
 
 ```bash
 # Clone the repository
-git clone https://github.com/kaidhar/platform-prototype-skill.git
-cd platform-prototype-skill
+git clone https://github.com/kaidhar/real-prototypes.git
+cd real-prototypes
 
 # Test locally
-cd examples/amazon-chatbot/prototype
+cd .claude/skills/real-prototypes/examples/amazon-chatbot/prototype
 npm install
 npm run dev
 ```
 
 ---
 
-## 🐛 Troubleshooting
+## Troubleshooting
 
 ### "agent-browser-skill not found"
 
-Install the browser automation skill:
+The npx installer should install this automatically. If not:
 ```bash
 cd ~/.claude/skills
 git clone https://github.com/anthropics/agent-browser-skill.git
@@ -381,10 +389,10 @@ git clone https://github.com/anthropics/agent-browser-skill.git
 
 Ensure you're using design tokens:
 ```typescript
-// ✅ Correct - using exact hex values
+// Correct - using exact hex values
 style={{ backgroundColor: "#FF9900" }}
 
-// ❌ Wrong - using Tailwind defaults
+// Wrong - using Tailwind defaults
 className="bg-orange-500"
 ```
 
@@ -409,13 +417,13 @@ PORT=3001 npm run dev
 
 ---
 
-## 📄 License
+## License
 
 MIT License - See [LICENSE](LICENSE) file for details.
 
 ---
 
-## 🙏 Acknowledgments
+## Acknowledgments
 
 - **Anthropic** - For Claude Code and Claude AI
 - **Vercel** - For Next.js framework
@@ -424,19 +432,13 @@ MIT License - See [LICENSE](LICENSE) file for details.
 
 ---
 
-## 🔗 Links
+## Links
 
-- 📖 [Documentation](./SKILL.md)
-- 🐛 [Report Issues](https://github.com/kaidhar/platform-prototype-skill/issues)
-- 💬 [Discussions](https://github.com/kaidhar/platform-prototype-skill/discussions)
-- 📦 [Examples](./examples/)
-
----
-
-## ⭐ Star This Repo
-
-If you find this skill useful, please star the repository to help others discover it!
+- [Documentation](./.claude/skills/real-prototypes/SKILL.md)
+- [Report Issues](https://github.com/kaidhar/real-prototypes/issues)
+- [Discussions](https://github.com/kaidhar/real-prototypes/discussions)
+- [Examples](./.claude/skills/real-prototypes/examples/)
 
 ---
 
-Made with ❤️ for the Claude Code community
+Made with care for the Claude Code community

@@ -1,7 +1,37 @@
 {
   "name": "real-prototypes",
   "version": "1.0.0",
-  "description": "Visual regression testing and platform prototyping system",
+  "description": "Capture any web platform and generate pixel-perfect prototypes that match its design. A Claude Code skill for rapid feature prototyping.",
+  "keywords": [
+    "claude-code",
+    "skill",
+    "prototype",
+    "design-system",
+    "web-capture",
+    "playwright",
+    "nextjs",
+    "tailwind"
+  ],
+  "author": "kaidhar",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kaidhar/real-prototypes.git"
+  },
+  "bugs": {
+    "url": "https://github.com/kaidhar/real-prototypes/issues"
+  },
+  "homepage": "https://github.com/kaidhar/real-prototypes#readme",
+  "bin": {
+    "real-prototypes": "./bin/cli.js"
+  },
+  "files": [
+    "bin/",
+    ".claude/skills/real-prototypes/",
+    ".claude/skills/agent-browser-skill/",
+    "README.md",
+    "LICENSE"
+  ],
   "scripts": {
     "test:visual": "node scripts/visual-regression-test.js",
     "test:visual:ci": "node scripts/visual-regression-test.js --ci",
@@ -21,5 +51,8 @@
     "clsx": "^2.1.1",
     "jsdom": "^27.4.0",
     "tailwind-merge": "^3.4.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
   }
 }
