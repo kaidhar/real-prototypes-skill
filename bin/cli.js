@@ -186,7 +186,7 @@ function install(options) {
 
 \x1b[1mNext Steps:\x1b[0m
 
-1. Add platform credentials to your CLAUDE.md:
+1. Add platform credentials to your CLAUDE.md (or copy .env.example):
 
    \x1b[36m## Platform Credentials
    \`\`\`
@@ -195,15 +195,39 @@ function install(options) {
    PLATFORM_PASSWORD=your-password
    \`\`\`\x1b[0m
 
-2. Start Claude Code and use the skill:
+2. \x1b[1m(Optional)\x1b[0m Configure capture settings in CLAUDE.md:
+
+   \x1b[36m## Capture Settings
+   \`\`\`
+   # Pages to capture (comma-separated paths, or "auto" for auto-discovery)
+   PAGES_TO_CAPTURE=/homepage,/products,/checkout
+
+   # Capture mode: "full" = all pages, "manual" = specified pages only
+   CAPTURE_MODE=manual
+
+   # Maximum pages to capture in auto mode
+   MAX_PAGES=50
+
+   # Viewport dimensions
+   VIEWPORT_WIDTH=1920
+   VIEWPORT_HEIGHT=1080
+
+   # Wait time after page load (milliseconds)
+   WAIT_AFTER_LOAD=2000
+   \`\`\`\x1b[0m
+
+3. Start Claude Code and use the skill:
 
    \x1b[36m/real-prototypes\x1b[0m
 
-3. Follow the prompts to capture and prototype!
+4. Follow the prompts to capture and prototype!
 
 \x1b[1mDocumentation:\x1b[0m
   ${targetDir}/README.md
   ${targetDir}/QUICKSTART.md
+
+\x1b[1mExample Config:\x1b[0m
+  See .env.example in the package root for a complete configuration template.
 
 \x1b[1mNeed Help?\x1b[0m
   https://github.com/kaidhar/real-prototypes
