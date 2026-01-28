@@ -1,4 +1,4 @@
-# Platform Prototype Skill - Example CLAUDE.md Configuration
+# Real Prototypes - Example CLAUDE.md Configuration
 
 Copy this to your project's CLAUDE.md and fill in your platform details.
 
@@ -10,31 +10,64 @@ Copy this to your project's CLAUDE.md and fill in your platform details.
 # Your platform's base URL (no trailing slash)
 PLATFORM_URL=https://app.example.com
 
-# Login credentials
+# Login credentials (if the platform requires authentication)
 PLATFORM_EMAIL=your-email@example.com
 PLATFORM_PASSWORD=your-secure-password
+```
 
-# Pages to capture (comma-separated paths)
+## Capture Settings
+
+```
+# Pages to capture
+# Option 1: Specify pages manually (comma-separated paths)
 PAGES_TO_CAPTURE=/dashboard,/settings,/profile,/users
+
+# Option 2: Auto-discover all pages
+# PAGES_TO_CAPTURE=auto
+
+# Option 3: Disable auto-capture (only capture specified pages)
+# PAGES_TO_CAPTURE=off
+
+# Capture mode
+# "full"   = capture all discovered pages up to MAX_PAGES
+# "manual" = only capture pages listed in PAGES_TO_CAPTURE
+CAPTURE_MODE=manual
+
+# Maximum pages to capture in auto/full mode
+MAX_PAGES=50
+
+# Viewport dimensions (pixels)
+VIEWPORT_WIDTH=1920
+VIEWPORT_HEIGHT=1080
+
+# Wait time after page load before capturing (milliseconds)
+# Increase this if pages have slow-loading content or animations
+WAIT_AFTER_LOAD=2000
+```
+
+## Advanced Settings (Optional)
+
+```
+# Maximum wait timeout (milliseconds)
+MAX_WAIT_TIMEOUT=10000
+
+# Retry settings
+MAX_RETRIES=3
+TIMEOUT_RETRIES=2
+RETRY_DELAY_BASE=1000
+
+# Validation thresholds
+MIN_SCREENSHOT_SIZE=102400
+MIN_HTML_SIZE=10240
+MIN_PAGE_HEIGHT=500
+
+# Exclude URL patterns from capture (comma-separated)
+# EXCLUDE_PATTERNS=/logout,/signout,/delete,/admin
 ```
 
 ## Usage Notes
 
-- The skill will read these values when running Phase 1: Capture
+- The skill will read these values when running the capture phase
 - Credentials are only used locally for browser automation
 - Never commit this file to version control with real credentials
 - Add CLAUDE.md to your .gitignore
-
-## Optional Settings
-
-```
-# Custom viewport size for screenshots
-VIEWPORT_WIDTH=1920
-VIEWPORT_HEIGHT=1080
-
-# Wait time after page load (ms)
-PAGE_LOAD_WAIT=2000
-
-# Include mobile screenshots
-CAPTURE_MOBILE=true
-```

@@ -227,7 +227,7 @@ function install(options) {
   ${targetDir}/QUICKSTART.md
 
 \x1b[1mExample Config:\x1b[0m
-  See .env.example in the package root for a complete configuration template.
+  See .claude/skills/real-prototypes/examples/CLAUDE.md.example for a complete configuration template.
 
 \x1b[1mNeed Help?\x1b[0m
   https://github.com/kaidhar/real-prototypes

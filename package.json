@@ -1,6 +1,6 @@
 {
   "name": "real-prototypes",
-  "version": "1.0.1",
+  "version": "1.0.3",
   "description": "Capture any web platform and generate pixel-perfect prototypes that match its design. A Claude Code skill for rapid feature prototyping.",
   "keywords": [
     "claude-code",

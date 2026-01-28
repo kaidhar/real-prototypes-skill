@@ -35,7 +35,7 @@ Perfect for:
 cd ~/.claude/skills
 
 # Clone this repository
-git clone https://github.com/kaidhar/platform-prototype-skill.git
+git clone https://github.com/kaidhar/real-prototypes.git
 
 # Restart Claude Code to load the skill
 ```
@@ -47,10 +47,10 @@ git clone https://github.com/kaidhar/platform-prototype-skill.git
 cd your-project/.claude/skills
 
 # Clone or add as submodule
-git clone https://github.com/kaidhar/platform-prototype-skill.git
+git clone https://github.com/kaidhar/real-prototypes.git
 
 # Or as a submodule
-git submodule add https://github.com/kaidhar/platform-prototype-skill.git
+git submodule add https://github.com/kaidhar/real-prototypes.git
 ```
 
 ### Verify Installation
@@ -59,7 +59,7 @@ git submodule add https://github.com/kaidhar/platform-prototype-skill.git
 # List installed skills
 claude-code skill list
 
-# You should see "platform-prototype-skill" in the output
+# You should see "real-prototypes" in the output
 ```
 
 ---
@@ -238,7 +238,7 @@ VIEWPORT_HEIGHT=1080
 
 ### Customize Capture Behavior
 
-Create `.claude/skills/platform-prototype-skill/capture-config.json`:
+Create `.claude/skills/real-prototypes/capture-config.json`:
 
 ```json
 {
@@ -356,8 +356,8 @@ Contributions welcome! Here's how:
 
 ```bash
 # Clone the repository
-git clone https://github.com/kaidhar/platform-prototype-skill.git
-cd platform-prototype-skill
+git clone https://github.com/kaidhar/real-prototypes.git
+cd real-prototypes
 
 # Test locally
 cd examples/amazon-chatbot/prototype
@@ -427,8 +427,8 @@ MIT License - See [LICENSE](LICENSE) file for details.
 ## 🔗 Links
 
 - 📖 [Documentation](./SKILL.md)
-- 🐛 [Report Issues](https://github.com/kaidhar/platform-prototype-skill/issues)
-- 💬 [Discussions](https://github.com/kaidhar/platform-prototype-skill/discussions)
+- 🐛 [Report Issues](https://github.com/kaidhar/real-prototypes/issues)
+- 💬 [Discussions](https://github.com/kaidhar/real-prototypes/discussions)
 - 📦 [Examples](./examples/)
 
 ---

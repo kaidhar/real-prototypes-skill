@@ -681,7 +681,7 @@ agent-browser eval "JSON.stringify({colors:{bg:getComputedStyle(document.body).b
 
 ## Step 6: Generate Manifest
 \`\`\`bash
-node .claude/skills/platform-prototype-skill/scripts/create-manifest.js "${new URL(baseUrl).hostname}" "${baseUrl}" .
+node .claude/skills/real-prototypes/scripts/create-manifest.js "${new URL(baseUrl).hostname}" "${baseUrl}" .
 \`\`\`
 
 ## Step 7: Cleanup

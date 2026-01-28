@@ -109,7 +109,7 @@ else
     const pkg = JSON.parse(fs.readFileSync('package.json', 'utf8'));
     pkg.scripts = pkg.scripts || {};
     pkg.scripts['lint:a11y'] = 'eslint . --ext .ts,.tsx,.js,.jsx';
-    pkg.scripts['validate:a11y'] = 'node ../.claude/skills/platform-prototype-skill/scripts/validate-accessibility.js . --verbose';
+    pkg.scripts['validate:a11y'] = 'node ../.claude/skills/real-prototypes/scripts/validate-accessibility.js . --verbose';
     fs.writeFileSync('package.json', JSON.stringify(pkg, null, 2));
   "
   echo "✅ Scripts added to package.json"

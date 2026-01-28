@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://platform-prototype-skill/manifest-schema.json",
+  "$id": "https://real-prototypes/manifest-schema.json",
   "title": "Platform Prototype Manifest",
   "description": "Schema for validating platform prototype reference manifest files",
   "type": "object",

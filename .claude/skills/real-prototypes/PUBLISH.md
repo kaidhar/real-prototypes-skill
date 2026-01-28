@@ -16,7 +16,7 @@ Replace `kaidhar` with your actual GitHub username in these files:
 
 **Find and replace:**
 ```bash
-cd .claude/skills/platform-prototype-skill
+cd .claude/skills/real-prototypes
 grep -r "kaidhar" . --include="*.md"
 ```
 
@@ -31,7 +31,7 @@ sed -i 's/kaidhar/yourgithub/g' QUICKSTART.md
 ### 2. Create GitHub Repository
 
 1. Go to https://github.com/new
-2. Repository name: `platform-prototype-skill`
+2. Repository name: `real-prototypes`
 3. Description: `Claude Code skill for capturing platform designs and generating pixel-perfect Next.js prototypes`
 4. ✅ Public
 5. ❌ Don't initialize with README (we have one)
@@ -40,7 +40,7 @@ sed -i 's/kaidhar/yourgithub/g' QUICKSTART.md
 ### 3. Initialize Git (if not already)
 
 ```bash
-cd .claude/skills/platform-prototype-skill
+cd .claude/skills/real-prototypes
 git init
 git add .
 git commit -m "Initial commit: Platform Prototype Skill v1.0"
@@ -50,7 +50,7 @@ git commit -m "Initial commit: Platform Prototype Skill v1.0"
 
 ```bash
 # Add remote (replace USERNAME)
-git remote add origin https://github.com/USERNAME/platform-prototype-skill.git
+git remote add origin https://github.com/USERNAME/real-prototypes.git
 
 # Push to GitHub
 git branch -M main
@@ -138,7 +138,7 @@ First stable release of the Platform Prototype Skill for Claude Code.
 
 ```bash
 cd ~/.claude/skills
-git clone https://github.com/USERNAME/platform-prototype-skill.git
+git clone https://github.com/USERNAME/real-prototypes.git
 ```
 
 See [INSTALL.md](./INSTALL.md) for details.
@@ -161,11 +161,11 @@ See [INSTALL.md](./INSTALL.md) for details.
 Test the installation process:
 ```bash
 # Remove local copy
-rm -rf ~/.claude/skills/platform-prototype-skill
+rm -rf ~/.claude/skills/real-prototypes
 
 # Install from GitHub
 cd ~/.claude/skills
-git clone https://github.com/USERNAME/platform-prototype-skill.git
+git clone https://github.com/USERNAME/real-prototypes.git
 
 # Test it works
 claude-code
@@ -202,7 +202,7 @@ Example: Built an Amazon shopping chatbot in minutes!
 
 #ClaudeCode #WebDev #Prototyping
 
-https://github.com/USERNAME/platform-prototype-skill
+https://github.com/USERNAME/real-prototypes
 ```
 
 ---
@@ -235,10 +235,10 @@ Monitor:
 
 ```bash
 # Check repository stats
-gh repo view USERNAME/platform-prototype-skill
+gh repo view USERNAME/real-prototypes
 
 # List recent stars
-gh api repos/USERNAME/platform-prototype-skill/stargazers
+gh api repos/USERNAME/real-prototypes/stargazers
 
 # List issues
 gh issue list
@@ -288,13 +288,13 @@ Once all checkboxes are complete, your skill is ready for the community!
 
 **Repository URL:**
 ```
-https://github.com/USERNAME/platform-prototype-skill
+https://github.com/USERNAME/real-prototypes
 ```
 
 **Installation Command:**
 ```bash
 cd ~/.claude/skills
-git clone https://github.com/USERNAME/platform-prototype-skill.git
+git clone https://github.com/USERNAME/real-prototypes.git
 ```
 
 ---

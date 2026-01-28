@@ -13,7 +13,7 @@
 
 ## 1. dashboard-widget.tsx.template
 
-**File:** `.claude/skills/platform-prototype-skill/templates/dashboard-widget.tsx.template`
+**File:** `.claude/skills/real-prototypes/templates/dashboard-widget.tsx.template`
 
 ### Issues Found (4)
 
@@ -54,7 +54,7 @@
 
 ## 2. data-table.tsx.template
 
-**File:** `.claude/skills/platform-prototype-skill/templates/data-table.tsx.template`
+**File:** `.claude/skills/real-prototypes/templates/data-table.tsx.template`
 
 ### Issues Found (2)
 
@@ -81,7 +81,7 @@
 
 ## 3. form-section.tsx.template
 
-**File:** `.claude/skills/platform-prototype-skill/templates/form-section.tsx.template`
+**File:** `.claude/skills/real-prototypes/templates/form-section.tsx.template`
 
 ### Issues Found (6)
 
@@ -135,7 +135,7 @@
 
 ## 4. modal-dialog.tsx.template
 
-**File:** `.claude/skills/platform-prototype-skill/templates/modal-dialog.tsx.template`
+**File:** `.claude/skills/real-prototypes/templates/modal-dialog.tsx.template`
 
 ### Issues Found (7)
 
@@ -196,7 +196,7 @@
 
 ## 5. nav-item.tsx.template
 
-**File:** `.claude/skills/platform-prototype-skill/templates/nav-item.tsx.template`
+**File:** `.claude/skills/real-prototypes/templates/nav-item.tsx.template`
 
 ### Issues Found (5)
 
