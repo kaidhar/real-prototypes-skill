@@ -8,7 +8,7 @@ Follow this checklist to publish the Platform Prototype Skill on GitHub.
 
 ### 1. Update Repository URLs
 
-Replace `YOUR_USERNAME` with your actual GitHub username in these files:
+Replace `kaidhar` with your actual GitHub username in these files:
 
 - [ ] `README.md` - Line 38, 51, 377, 430-432
 - [ ] `INSTALL.md` - Line 15, 54, 61, 112, 152
@@ -17,15 +17,15 @@ Replace `YOUR_USERNAME` with your actual GitHub username in these files:
 **Find and replace:**
 ```bash
 cd .claude/skills/platform-prototype-skill
-grep -r "YOUR_USERNAME" . --include="*.md"
+grep -r "kaidhar" . --include="*.md"
 ```
 
 Replace with your actual username:
 ```bash
 # Example:
-sed -i 's/YOUR_USERNAME/yourgithub/g' README.md
-sed -i 's/YOUR_USERNAME/yourgithub/g' INSTALL.md
-sed -i 's/YOUR_USERNAME/yourgithub/g' QUICKSTART.md
+sed -i 's/kaidhar/yourgithub/g' README.md
+sed -i 's/kaidhar/yourgithub/g' INSTALL.md
+sed -i 's/kaidhar/yourgithub/g' QUICKSTART.md
 ```
 
 ### 2. Create GitHub Repository
@@ -271,7 +271,7 @@ Before announcing publicly:
 - [ ] README.md is complete and clear
 - [ ] INSTALL.md tested on clean machine
 - [ ] QUICKSTART.md verified working
-- [ ] All YOUR_USERNAME replaced
+- [ ] All kaidhar replaced
 - [ ] LICENSE file present
 - [ ] Example project works
 - [ ] No sensitive data (passwords, keys)

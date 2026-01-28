@@ -23,7 +23,7 @@ cd ~/.claude/skills
 ### Step 2: Clone This Repository
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/platform-prototype-skill.git
+git clone https://github.com/kaidhar/platform-prototype-skill.git
 ```
 
 ### Step 3: Verify Installation
@@ -75,12 +75,12 @@ cd .claude/skills
 ### Step 3: Clone the Repository
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/platform-prototype-skill.git
+git clone https://github.com/kaidhar/platform-prototype-skill.git
 ```
 
 Or add as a submodule:
 ```bash
-git submodule add https://github.com/YOUR_USERNAME/platform-prototype-skill.git
+git submodule add https://github.com/kaidhar/platform-prototype-skill.git
 ```
 
 ### Step 4: Restart Claude Code in This Project
@@ -157,7 +157,7 @@ chmod 755 ~/.claude/skills
 1. Check if you're using the correct GitHub URL
 2. Try with HTTPS instead of SSH:
    ```bash
-   git clone https://github.com/YOUR_USERNAME/platform-prototype-skill.git
+   git clone https://github.com/kaidhar/platform-prototype-skill.git
    ```
 3. Check your network connection
 
@@ -250,8 +250,8 @@ After installation:
 
 ## 💬 Getting Help
 
-- **GitHub Issues**: [Report a problem](https://github.com/YOUR_USERNAME/platform-prototype-skill/issues)
-- **Discussions**: [Ask questions](https://github.com/YOUR_USERNAME/platform-prototype-skill/discussions)
+- **GitHub Issues**: [Report a problem](https://github.com/kaidhar/platform-prototype-skill/issues)
+- **Discussions**: [Ask questions](https://github.com/kaidhar/platform-prototype-skill/discussions)
 - **Documentation**: [Read SKILL.md](./SKILL.md)
 
 ---

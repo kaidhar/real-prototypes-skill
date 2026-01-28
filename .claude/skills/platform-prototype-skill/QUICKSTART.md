@@ -8,7 +8,7 @@ Get started with Platform Prototype Skill in 5 minutes.
 
 ```bash
 cd ~/.claude/skills
-git clone https://github.com/YOUR_USERNAME/platform-prototype-skill.git
+git clone https://github.com/kaidhar/platform-prototype-skill.git
 ```
 
 ## 2️⃣ Open Claude Code
@@ -237,4 +237,4 @@ Now you can:
 
 ---
 
-Need help? [Open an issue](https://github.com/YOUR_USERNAME/platform-prototype-skill/issues)
+Need help? [Open an issue](https://github.com/kaidhar/platform-prototype-skill/issues)

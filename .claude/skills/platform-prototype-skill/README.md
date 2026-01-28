@@ -35,7 +35,7 @@ Perfect for:
 cd ~/.claude/skills
 
 # Clone this repository
-git clone https://github.com/YOUR_USERNAME/platform-prototype-skill.git
+git clone https://github.com/kaidhar/platform-prototype-skill.git
 
 # Restart Claude Code to load the skill
 ```
@@ -47,10 +47,10 @@ git clone https://github.com/YOUR_USERNAME/platform-prototype-skill.git
 cd your-project/.claude/skills
 
 # Clone or add as submodule
-git clone https://github.com/YOUR_USERNAME/platform-prototype-skill.git
+git clone https://github.com/kaidhar/platform-prototype-skill.git
 
 # Or as a submodule
-git submodule add https://github.com/YOUR_USERNAME/platform-prototype-skill.git
+git submodule add https://github.com/kaidhar/platform-prototype-skill.git
 ```
 
 ### Verify Installation
@@ -356,7 +356,7 @@ Contributions welcome! Here's how:
 
 ```bash
 # Clone the repository
-git clone https://github.com/YOUR_USERNAME/platform-prototype-skill.git
+git clone https://github.com/kaidhar/platform-prototype-skill.git
 cd platform-prototype-skill
 
 # Test locally
@@ -427,8 +427,8 @@ MIT License - See [LICENSE](LICENSE) file for details.
 ## 🔗 Links
 
 - 📖 [Documentation](./SKILL.md)
-- 🐛 [Report Issues](https://github.com/YOUR_USERNAME/platform-prototype-skill/issues)
-- 💬 [Discussions](https://github.com/YOUR_USERNAME/platform-prototype-skill/discussions)
+- 🐛 [Report Issues](https://github.com/kaidhar/platform-prototype-skill/issues)
+- 💬 [Discussions](https://github.com/kaidhar/platform-prototype-skill/discussions)
 - 📦 [Examples](./examples/)
 
 ---
