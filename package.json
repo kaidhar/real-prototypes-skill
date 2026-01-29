@@ -12,8 +12,8 @@
     "nextjs",
     "tailwind"
   ],
-  "author": "kaidhar",
-  "license": "MIT",
+  "author": "Kartikay Dhar",
+  "license": "Apache-2.0",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/kaidhar/real-prototypes-skill.git"
