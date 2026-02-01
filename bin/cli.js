@@ -13,9 +13,53 @@
 const fs = require('fs');
 const path = require('path');
 const os = require('os');
+const https = require('https');
 
 const VERSION = require('../package.json').version;
 const SKILL_NAME = 'real-prototypes-skill';
+
+/**
+ * Check for newer version on npm and notify user
+ */
+function checkForUpdates() {
+  return new Promise((resolve) => {
+    const req = https.get(
+      `https://registry.npmjs.org/${SKILL_NAME}/latest`,
+      { timeout: 3000 },
+      (res) => {
+        let data = '';
+        res.on('data', chunk => data += chunk);
+        res.on('end', () => {
+          try {
+            const latest = JSON.parse(data).version;
+            if (latest && latest !== VERSION) {
+              const current = VERSION.split('.').map(Number);
+              const remote = latest.split('.').map(Number);
+
+              // Check if remote is newer
+              const isNewer = remote[0] > current[0] ||
+                (remote[0] === current[0] && remote[1] > current[1]) ||
+                (remote[0] === current[0] && remote[1] === current[1] && remote[2] > current[2]);
+
+              if (isNewer) {
+                console.log(`
+\x1b[33m╔═══════════════════════════════════════════════════════════╗
+║  UPDATE AVAILABLE: ${VERSION} → ${latest.padEnd(43)}║
+║                                                           ║
+║  Run: npx ${SKILL_NAME}@latest --force            ║
+╚═══════════════════════════════════════════════════════════╝\x1b[0m
+`);
+              }
+            }
+          } catch (e) { /* ignore parse errors */ }
+          resolve();
+        });
+      }
+    );
+    req.on('error', () => resolve());
+    req.on('timeout', () => { req.destroy(); resolve(); });
+  });
+}
 
 function log(message, type = 'info') {
   const styles = {
@@ -302,18 +346,25 @@ function parseArgs(args) {
 }
 
 // Main
-const args = process.argv.slice(2);
-const options = parseArgs(args);
+async function main() {
+  const args = process.argv.slice(2);
+  const options = parseArgs(args);
 
-switch (options.command) {
-  case 'install':
-    install(options);
-    break;
-  case 'uninstall':
-    uninstall(options);
-    break;
-  case 'help':
-  default:
-    showHelp();
-    break;
+  // Check for updates (non-blocking, 3s timeout)
+  await checkForUpdates();
+
+  switch (options.command) {
+    case 'install':
+      install(options);
+      break;
+    case 'uninstall':
+      uninstall(options);
+      break;
+    case 'help':
+    default:
+      showHelp();
+      break;
+  }
 }
+
+main();
