@@ -16,6 +16,41 @@ const fs = require('fs');
 const path = require('path');
 const { execSync } = require('child_process');
 
+// Check for required dependencies
+function checkDependencies() {
+  const required = ['jsdom'];
+  const missing = [];
+
+  for (const dep of required) {
+    try {
+      require.resolve(dep);
+    } catch (e) {
+      missing.push(dep);
+    }
+  }
+
+  if (missing.length > 0) {
+    console.log(`
+\x1b[31m════════════════════════════════════════════════════════════\x1b[0m
+\x1b[31m  MISSING DEPENDENCIES\x1b[0m
+\x1b[31m════════════════════════════════════════════════════════════\x1b[0m
+
+The following required packages are not installed:
+  ${missing.join(', ')}
+
+\x1b[1mTo fix, run:\x1b[0m
+  cd ${__dirname} && npm install
+
+\x1b[1mOr reinstall the skill:\x1b[0m
+  npx real-prototypes-skill@latest --force
+`);
+    process.exit(1);
+  }
+}
+
+// Run dependency check before anything else
+checkDependencies();
+
 const SKILL_DIR = __dirname;
 const PROJECTS_DIR = path.resolve(SKILL_DIR, '../../../projects');
 const VERSION = '1.4.0';

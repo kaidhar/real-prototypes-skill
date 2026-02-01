@@ -6,6 +6,23 @@ allowed-tools: Bash(agent-browser:*)
 
 # Browser Automation with agent-browser
 
+## Installation
+
+`agent-browser` is a **Vercel Labs npm package** for headless browser automation.
+
+```bash
+# Install globally
+npm install -g agent-browser
+
+# Download Chromium (required after npm install)
+agent-browser install
+
+# Verify installation
+agent-browser --version
+```
+
+**Repository:** https://github.com/vercel-labs/agent-browser
+
 ## Quick start
 
 ```bash

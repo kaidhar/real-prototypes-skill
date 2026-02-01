@@ -117,18 +117,32 @@ design. Include payment selection and order summary.
 
 ### Required
 
-- **Claude Code CLI** (v0.5.0+)
+- **agent-browser** - Vercel Labs browser automation package
   ```bash
-  # Install from https://claude.ai/code
-  npm install -g @anthropic-ai/claude-code
+  # Install globally
+  npm install -g agent-browser
+
+  # Download Chromium (required after npm install)
+  agent-browser install
+
+  # Verify installation
+  agent-browser --version
   ```
+
+  **Note:** The `npx real-prototypes-skill` installer will attempt to install agent-browser automatically.
 
 - **Node.js 18+**
   ```bash
   node --version  # Should be v18.0.0 or higher
   ```
 
-- **agent-browser-skill** (installed automatically with npx)
+### If You Can't Install agent-browser
+
+You can still use this skill with **manual capture**:
+1. Take screenshots manually and save to `references/screenshots/`
+2. Save HTML files to `references/html/`
+3. Run `node cli.js extract-tokens` to generate design tokens
+4. Then use `generate`, `plan`, and other commands
 
 ### Optional (Enhances Features)
 
@@ -377,12 +391,48 @@ npm run dev
 
 ## Troubleshooting
 
-### "agent-browser-skill not found"
+### "agent-browser not found"
 
-The npx installer should install this automatically. If not:
+`agent-browser` is a **Vercel Labs npm package** that needs to be installed separately.
+
+**Install agent-browser:**
 ```bash
-cd ~/.claude/skills
-git clone https://github.com/anthropics/agent-browser-skill.git
+# Install globally
+npm install -g agent-browser
+
+# Download Chromium (required after npm install)
+agent-browser install
+
+# Verify installation
+agent-browser --version
+```
+
+**Alternative - Manual capture workflow:**
+```bash
+# 1. Take screenshots manually, save to:
+projects/<name>/references/screenshots/
+
+# 2. Save HTML files to:
+projects/<name>/references/html/
+
+# 3. Extract design tokens from HTML:
+node cli.js extract-tokens --project <name>
+
+# 4. Continue with generate/plan commands
+node cli.js generate --project <name>
+```
+
+### "Missing dependencies (jsdom, etc.)"
+
+The skill requires dependencies to be installed:
+```bash
+cd .claude/skills/real-prototypes-skill
+npm install
+```
+
+Or reinstall the skill:
+```bash
+npx real-prototypes-skill@latest --force
 ```
 
 ### "Colors don't match the captured design"

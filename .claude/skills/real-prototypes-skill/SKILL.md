@@ -38,6 +38,38 @@ Enterprise-grade tool for capturing web platforms and generating pixel-perfect p
 
 ---
 
+## Prerequisites
+
+### Required: agent-browser
+This skill requires **agent-browser** for browser automation.
+
+`agent-browser` is a **Vercel Labs npm package** for headless browser automation.
+
+**Installation:**
+```bash
+# Install globally
+npm install -g agent-browser
+
+# Download Chromium (required after npm install)
+agent-browser install
+```
+
+**Verify installation:**
+```bash
+agent-browser --version
+```
+
+**Note:** The `npx real-prototypes-skill` installer will attempt to install agent-browser automatically.
+
+### Alternative: Manual Capture
+If you can't install `agent-browser`, you can still use this skill by:
+1. Manually taking screenshots and saving to `references/screenshots/`
+2. Manually saving HTML to `references/html/`
+3. Running `node cli.js extract-tokens` to generate design tokens from HTML
+4. Then using `generate`, `plan`, and other commands
+
+---
+
 ## 🏢 ENTERPRISE PIPELINE - MANDATORY FOR ALL PROTOTYPES
 
 **This pipeline MUST be followed. Validation gates will BLOCK generation if prerequisites are missing.**

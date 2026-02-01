@@ -215,6 +215,61 @@ function install(options) {
 
   log(`Skill installed to ${targetDir}`, 'success');
 
+  // Install dependencies in the skill directory
+  const skillPackageJson = {
+    "name": "real-prototypes-skill-deps",
+    "private": true,
+    "dependencies": {
+      "jsdom": "^27.4.0",
+      "@babel/parser": "^7.29.0",
+      "@babel/traverse": "^7.29.0",
+      "@babel/generator": "^7.29.0",
+      "class-variance-authority": "^0.7.1",
+      "clsx": "^2.1.1",
+      "tailwind-merge": "^3.4.0"
+    }
+  };
+
+  const skillPkgPath = path.join(targetDir, 'package.json');
+  fs.writeFileSync(skillPkgPath, JSON.stringify(skillPackageJson, null, 2));
+  log('Installing skill dependencies...', 'info');
+
+  try {
+    const { execSync } = require('child_process');
+    execSync('npm install --production', {
+      cwd: targetDir,
+      stdio: 'pipe'
+    });
+    log('Dependencies installed', 'success');
+  } catch (e) {
+    log('Warning: Could not auto-install dependencies', 'warning');
+    log(`Run manually: cd ${targetDir} && npm install`, 'info');
+  }
+
+  // Install agent-browser globally (required for browser automation)
+  log('Installing agent-browser (Vercel Labs browser automation)...', 'info');
+  try {
+    const { execSync } = require('child_process');
+    // Check if already installed
+    try {
+      execSync('agent-browser --version', { stdio: 'pipe' });
+      log('agent-browser already installed', 'success');
+    } catch {
+      // Not installed, install it
+      execSync('npm install -g agent-browser', { stdio: 'pipe' });
+      log('agent-browser installed globally', 'success');
+
+      // Download Chromium browser
+      log('Downloading Chromium for agent-browser...', 'info');
+      execSync('agent-browser install', { stdio: 'pipe' });
+      log('Chromium downloaded', 'success');
+    }
+  } catch (e) {
+    log('Warning: Could not install agent-browser automatically', 'warning');
+    log('Install manually: npm install -g agent-browser && agent-browser install', 'info');
+    log('Without agent-browser, you can still use manual capture mode', 'info');
+  }
+
   // Copy CLAUDE.md.example to current directory if local install
   if (!options.global) {
     const exampleSource = path.join(path.dirname(__dirname), 'CLAUDE.md.example');
